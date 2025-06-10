@@ -2,6 +2,13 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const patientRoutes = require('./routes/patients');
+const studentRoutes = require('./routes/students');
+const staffRoutes = require('./routes/staff');
+const parentRoutes = require('./routes/parent');
+const statsRoutes = require('./routes/stats');
+const uploadRoutes = require('./routes/upload');
+
 
 const app = express();
 
@@ -25,6 +32,18 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/doctors', require('./routes/doctors'));
 app.use('/api/appointments', require('./routes/appointments'));
+app.use('/api/patients', patientRoutes);
+app.use('/api/students', studentRoutes);
+app.use('/api/staff', staffRoutes);
+app.use('/api/parents', parentRoutes);
+app.use('/api/stats', statsRoutes);
+app.use('/uploads', express.static('uploads'));
+app.use('/api/upload', uploadRoutes);
+
+
+
+
+
 
 // Portni sozlash
 const PORT = process.env.PORT || 5000;
